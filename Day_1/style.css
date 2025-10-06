@@ -1,0 +1,87 @@
+body {
+    background-color: #0d1117;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: white;
+}
+
+#calculator{
+    background-color: #161b22;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    width: 320px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #4E505F;
+    font-size: 1.5rem;
+
+}
+
+.display-container {
+    background-color: rgba(143, 143, 143, 0.418);
+    color: white;
+    font-size: 2rem;
+    text-align: right;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.buttons-container div {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+button {
+    flex: 1;
+    padding: 15px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #21262d;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+button:hover {
+    background-color: #2E2F38;
+    color: #000;
+}
+
+button[data-value="AC"],
+button[data-value="!"],
+button[data-value="%"]
+{
+    background-color: #4E505F;
+}
+
+button[data-value="+"],
+button[data-value="-"],
+button[data-value="*"],
+button[data-value="←"],
+button[data-value="="] {
+    background-color: #4B5EFC;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+#calculator .row5 button:first-child {
+    flex: 3;
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="calculator">
+        <h1>Calculator</h1>
+        <div class="display-container" id="display">
+            0
+        </div>
+
+        <div class="buttons-container">
+            <div class="row1">
+                <button data-value="AC" onclick="clearDisplay()">AC</button>
+                <button data-value="%" onclick="appendValue('%')">%</button>
+                <button data-value="/" onclick="appendValue('/')">/</button>
+                <button data-value="=" onclick="calculate()">=</button>
+            </div>
+            <div class="row2">
+                <button data-value="7" onclick="appendValue('7')">7</button>
+                <button data-value="8" onclick="appendValue('8')">8</button>
+                <button data-value="9" onclick="appendValue('9')">9</button>
+                <button data-value="*" onclick="appendValue('*')">*</button>
+            </div>
+            <div class="row3">
+                <button data-value="4" onclick="appendValue('4')">4</button>
+                <button data-value="5" onclick="appendValue('5')">5</button>
+                <button data-value="6" onclick="appendValue('6')">6</button>
+                <button data-value="-" onclick="appendValue('-')">-</button>
+            </div>
+            <div class="row4">
+                <button data-value="1" onclick="appendValue('1')">1</button>
+                <button data-value="2" onclick="appendValue('2')">2</button>
+                <button data-value="3" onclick="appendValue('3')">3</button>
+                <button data-value="+" onclick="appendValue('+')">+</button>
+            </div>
+            <div class="row5">
+                <button data-value="0" onclick="appendValue('0')">0</button>
+                <button data-value="." onclick="appendValue('.')">.</button>
+                <button data-value="←" onclick="deleteLast()">←</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentExpression='';
+        const display = document.getElementById('display');
+
+        function clearDisplay(){
+            currentExpression='';
+            display.textContent='0';
+        }
+
+        function deleteLast(){
+            if (currentExpression == "Error") {
+                clearDisplay();
+                return;
+            }
+            currentExpression=currentExpression.slice(0,-1);
+            if (currentExpression === '') {
+                display.textContent='0';
+            }
+            else
+            {
+                display.textContent=currentExpression;
+            }
+        }
+
+        function calculate(){
+            try{
+                let finalExpression = currentExpression.replace(/%/g,'/100*');
+                if(finalExpression === ''){
+                    display.textContent='0';
+                    return;
+                }
+                let result = eval(finalExpression);
+                if(!isFinite(result)){
+                    currentExpression="Error";
+                    display.textContent="Error";
+                    return;
+                }
+                currentExpression= parseFloat(result.toFixed(10).toString());
+                display.textContent=currentExpression;
+
+            }
+            catch(error)
+            {
+                currentExpression="Error";
+                display.textContent="Error";
+            }
+        }
+
+        function appendValue(value){
+            if (currentExpression==="Error") {
+                currentExpression='';
+            }
+            else if(value == 'AC'){
+                clearDisplay();
+            }
+            else if(value == '←')
+            {
+                deleteLast();
+            }
+            else if(value == "="){
+                calculate();
+            }
+            else{
+                currentExpression+=value;
+                display.textContent=currentExpression;
+            }
+        }
+    </script>
+</body>
+</html>
