@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Cheatsheet for Developers</title>
+<style>
+  body {
+    font-family: "Poppins", sans-serif;
+    background: #f8f9fc;
+    color: #333;
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .wrapper {
+    max-width: 1100px;
+    width: 100%;
+  }
+
+  h1 {
+    text-align: center;
+    color: #0077b6;
+    margin-bottom: 25px;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+  }
+
+  .card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    padding: 20px 25px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-top: 4px solid #00b4d8;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+  }
+
+  .card h2 {
+    color: #0096c7;
+    margin-bottom: 12px;
+    font-size: 1.2em;
+  }
+
+  p {
+    margin: 6px 0;
+    font-size: 0.95em;
+    line-height: 1.5;
+  }
+
+  code {
+    background: #e9f5ff;
+    color: #0077b6;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-family: "Consolas", monospace;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #555;
+    font-size: 0.9em;
+  }
+
+  @media (min-width: 1200px) {
+    .container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <h1>🚀 HTML Cheatsheet for Developers</h1>
+    <div class="container">
+
+      <div class="card">
+        <h2>Page Setup & Metadata</h2>
+        <p><code>&lt;!DOCTYPE html&gt;</code> → Always include (HTML5)</p>
+        <p><code>&lt;meta charset="UTF-8"&gt;</code> → Unicode support</p>
+        <p><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code> → Mobile friendly</p>
+        <p><code>&lt;title&gt;</code> → Browser tab title</p>
+        <p><code>&lt;link rel="icon" href="favicon.png"&gt;</code> → Adds favicon</p>
+      </div>
+
+      <div class="card">
+        <h2>Essential Tags</h2>
+        <p><code>&lt;header&gt;</code> → Top section (logo, nav)</p>
+        <p><code>&lt;main&gt;</code> → Core page content</p>
+        <p><code>&lt;footer&gt;</code> → Bottom credits/info</p>
+        <p><code>&lt;nav&gt;</code> → Navigation menus</p>
+        <p><code>&lt;section&gt;</code> / <code>&lt;article&gt;</code> → Logical content blocks</p>
+      </div>
+
+      <div class="card">
+        <h2>Links & Buttons</h2>
+        <p><code>&lt;a href="page.html"&gt;Visit&lt;/a&gt;</code></p>
+        <p><code>target="_blank"</code> → Opens in new tab</p>
+        <p><code>download</code> → Forces download</p>
+        <p><code>rel="noopener noreferrer"</code> → Security for new tab</p>
+        <p><code>&lt;button&gt;</code> → For actions (JS/submit)</p>
+      </div>
+
+      <div class="card">
+        <h2>Images & Media</h2>
+        <p><code>&lt;img src="img.jpg" alt="desc"&gt;</code> → Must include <code>alt</code></p>
+        <p><code>loading="lazy"</code> → Improves performance</p>
+        <p><code>&lt;video controls poster="thumb.jpg"&gt;</code></p>
+        <p><code>&lt;audio controls&gt;</code></p>
+        <p><code>&lt;source&gt;</code> → Multiple formats support</p>
+      </div>
+
+      <div class="card">
+        <h2>Forms (Modern)</h2>
+        <p><code>&lt;form action="/submit" method="post"&gt;</code></p>
+        <p><code>&lt;input type="email" required&gt;</code></p>
+        <p><code>&lt;input type="password" minlength="6"&gt;</code></p>
+        <p><code>&lt;input type="file" accept="image/*"&gt;</code></p>
+        <p><code>&lt;button type="submit"&gt;Send&lt;/button&gt;</code></p>
+      </div>
+
+      <div class="card">
+        <h2>SEO & Accessibility</h2>
+        <p><code>&lt;meta name="description" content="Site info"&gt;</code></p>
+        <p><code>alt</code> → Always describe images</p>
+        <p><code>&lt;label for="id"&gt;</code> → Ties label to input</p>
+        <p><code>aria-label</code> → Describes for screen readers</p>
+        <p><code>&lt;h1&gt;</code> → One per page, main title</p>
+      </div>
+
+      <div class="card">
+        <h2>Useful Attributes</h2>
+        <p><code>id</code> → Unique element name</p>
+        <p><code>class</code> → Grouping for CSS/JS</p>
+        <p><code>data-*</code> → Custom data for JS</p>
+        <p><code>title</code> → Tooltip on hover</p>
+        <p><code>hidden</code> → Hides element (still in DOM)</p>
+      </div>
+
+      <div class="card">
+        <h2>Layout & Structure</h2>
+        <p><code>&lt;div&gt;</code> → Container (block)</p>
+        <p><code>&lt;span&gt;</code> → Inline text wrapper</p>
+        <p><code>&lt;br&gt;</code> / <code>&lt;hr&gt;</code> → Breaks/lines</p>
+        <p><code>&lt;figure&gt;</code> + <code>&lt;figcaption&gt;</code></p>
+        <p><code>&lt;aside&gt;</code> → Side info or ads</p>
+      </div>
+
+      <div class="card">
+        <h2>Performance Tips</h2>
+        <p>✅ Use <code>loading="lazy"</code> for images</p>
+        <p>✅ Minimize inline CSS & JS</p>
+        <p>✅ Use semantic tags (better SEO)</p>
+        <p>✅ Compress images before upload</p>
+        <p>✅ Place scripts before <code>&lt;/body&gt;</code></p>
+      </div>
+
+      <div class="card">
+        <h2>Fav Combos (HTML + Dev)</h2>
+        <p>✅ HTML + CSS → Styling</p>
+        <p>✅ HTML + JS → Interactivity</p>
+        <p>✅ HTML + SEO Meta → Ranking</p>
+        <p>✅ HTML + ARIA → Accessibility</p>
+        <p>✅ HTML + CDN → Faster loading</p>
+      </div>
+
+    </div>
+
+    <footer>Made with ❤️ for modern web developers</footer>
+  </div>
+</body>
+</html>
