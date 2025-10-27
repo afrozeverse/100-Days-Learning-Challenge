@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stack Visualizer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col items-center py-10 px-4">
+
+    <div class="w-full max-w-5xl">
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <h1 class="text-4xl font-bold text-blue-600 mb-2">Stack Data Visualizer</h1>
+            <p class="text-gray-600">LIFO — Last In, First Out principle</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="grid md:grid-cols-2 gap-8">
+
+            <!-- Controls Section -->
+            <section class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
+                <h2 class="text-2xl font-semibold text-blue-500 mb-4">Operations</h2>
+
+                <div class="flex flex-col gap-4">
+                    <input type="text" placeholder="Enter value to push"
+                        class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
+                        id="input-box" />
+
+                    <button id="btn-push"
+                        class="py-2.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition font-semibold"
+                        onclick="push()">
+                        PUSH (Add to Top)
+                    </button>
+
+                    <button id="btn-pop"
+                        class="py-2.5 bg-red-500 text-white rounded-lg hover:bg-red-600 transition font-semibold"
+                        onclick="pop()">
+                        POP (Remove from Top)
+                    </button>
+
+                    <button id="btn-peek"
+                        class="py-2.5 bg-yellow-400 text-gray-800 rounded-lg hover:bg-yellow-500 transition font-semibold"
+                        onclick="peek()">
+                        PEEK (View Top)
+                    </button>
+                </div>
+
+                <div class="message mt-4 text-gray-600 italic text-sm" id="msg-box">
+                    <!-- Dynamic message area -->
+                </div>
+            </section>
+
+            <!-- Visualization Section -->
+            <section class="bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
+                <h2 class="text-2xl font-semibold text-blue-500 mb-4">The Stack</h2>
+
+                <div
+                    class="canvas-container border-2 border-dashed border-blue-300 rounded-xl min-h-[350px] flex flex-col justify-end items-center p-4">
+                    <div class="canvas-inner-container flex flex-col-reverse gap-2 w-full items-center" id="canvas">
+                        <p class="text-gray-500 text-center">Stack is empty — PUSH an element!</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Stack Logic (unchanged) -->
+    <script>
+        class Stack {
+            constructor() {
+                this.items = [];
+                this.size = 0;
+            }
+            isEmpty() {
+                return this.size === 0;
+            }
+            getSize() {
+                return this.size;
+            }
+            push(value) {
+                this.size++;
+                return this.items.push(value);
+            }
+            pop() {
+                if (this.isEmpty()) {
+                    return "Empty";
+                }
+                this.size--;
+                return this.items.pop();
+            }
+            peek() {
+                if (this.isEmpty()) {
+                    return "Empty";
+                }
+                return this.items[this.size - 1];
+            }
+        }
+        let s = new Stack();
+        const msgBox = document.getElementById('msg-box');
+        const canvas = document.getElementById('canvas')
+        function handle_msg_box(msg) {
+            msgBox.innerHTML = msg;
+            msgBox.style.transition = "all 0.5s ease";
+            msgBox.style.opacity = "1";
+            msgBox.style.background = "#e0f2fe";      // light blue background
+            msgBox.style.color = "#0369a1";           // deep blue text
+            msgBox.style.padding = "10px 15px";
+            msgBox.style.borderRadius = "8px";
+            msgBox.style.fontWeight = "500";
+            msgBox.style.textAlign = "center";
+            msgBox.style.boxShadow = "0 2px 6px rgba(0,0,0,0.1)";
+
+            setTimeout(() => {
+                msgBox.style.opacity = "0";
+                setTimeout(() => {
+                    msgBox.innerHTML = '';
+                    msgBox.removeAttribute('style'); // reset styles
+                }, 500); // wait for fade-out
+            }, 3000);
+        }
+
+        function updateVisualizer() {
+            if (s.getSize() === 0)
+                canvas.innerHTML = `<p class="text-gray-500 text-center">Stack is empty — PUSH an element!</p>`
+            else {
+                canvas.innerHTML = '';
+                for (let i = (s.getSize() - 1); i >= 0; i--) {
+                    const div = document.createElement('div');
+                    div.className = "fade-in bg-blue-100 border border-blue-400 text-blue-700 font-semibold px-4 py-2 rounded-lg w-1/2 text-center shadow";
+                    div.textContent = s.items[i];
+                    canvas.appendChild(div);
+                }
+            }
+        }
+        function push() {
+            value = document.getElementById('input-box').value;
+            if (value) {
+                s.push(value);
+                updateVisualizer();
+                t = value + " pushed successfully!";
+                handle_msg_box(t)
+            }
+            return
+        }
+        function pop() {
+            value = s.pop()
+            if (value !== "Empty") {
+                updateVisualizer()
+                t = value + " popped successfully!";
+                handle_msg_box(t)
+            }
+        }
+        function peek() {
+            value = s.peek()
+            t = value + " is the top"
+            handle_msg_box(t)
+             const elements = canvas.querySelectorAll("div");
+    if (elements.length > 0) {
+        const topElement = elements[elements.length - 1];
+        topElement.classList.add("bg-yellow-300", "border-yellow-500", "scale-105");
+        topElement.style.transition = "all 0.3s ease";
+
+        // Remove highlight after a short time
+        setTimeout(() => {
+            topElement.classList.remove("bg-yellow-300", "border-yellow-500", "scale-105");
+        }, 1000);
+        }
+    }
+    </script>
+
+</body>
+
+</html>
