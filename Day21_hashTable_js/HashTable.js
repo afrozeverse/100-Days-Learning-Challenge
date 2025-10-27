@@ -20,7 +20,7 @@ class HashTable{
             if(chain[i][0]===key){
                 chain[i][1]=value;
                 return;
-            }
+            } 
         }
         chain.push([key,value]);
         this.size++;
