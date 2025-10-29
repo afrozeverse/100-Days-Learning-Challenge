@@ -1,0 +1,18 @@
+<employees>
+    <employee status="active">
+        <name>Ashish</name>
+        <age>23</age>
+        <gender>Male</gender>
+        <email>ashish@mail.com</email>
+        <phone>0123456789</phone>
+        <address>Noida, India</address>
+    </employee>
+    <employee status="inactive">
+        <name>Aisha</name>
+        <age>24</age>
+        <gender>Female</gender>
+        <email>aisha@mail.com</email>
+        <phone>0123456788</phone>
+        <address>Gurgaon, India</address>
+    </employee>
+</employees>
