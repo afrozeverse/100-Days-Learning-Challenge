@@ -1,0 +1,6 @@
+{
+    "name":"afroze",
+    "age":23,
+    "married":false,
+    "skills":["C","C++","DSA","STL","React","Django"]
+}
